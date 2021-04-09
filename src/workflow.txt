@@ -1,0 +1,6 @@
+desc
+1 = readfile C:\Users\Лена\lab2\src\in.txt
+2 = replace first hello
+3 = writefile out.txt
+csed
+1 -> 2 -> 3
