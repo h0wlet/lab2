@@ -1,3 +1,6 @@
 *.iml
 .idea
 *.xml
+out.txt
+writefile
+lab2.iml
