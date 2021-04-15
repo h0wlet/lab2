@@ -1,0 +1,21 @@
+package Exception;
+
+public class UnableToCreateCommand extends Exception{
+
+    public UnableToCreateCommand(String msg, Throwable ex) {
+        super(msg, ex);
+    }
+
+    public UnableToCreateCommand(String msg) {
+        super(msg);
+    }
+
+    public UnableToCreateCommand() {
+
+    }
+
+    public UnableToCreateCommand(Throwable ex) {
+        super(ex);
+    }
+
+}
