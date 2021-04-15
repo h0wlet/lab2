@@ -5,6 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.IOException;
 
+import Exception.*;
+
 public class CommandFactory {
     static Logger logger = Logger.getLogger(CommandFactory.class.getName());
 
@@ -13,8 +15,8 @@ public class CommandFactory {
     private CommandFactory() throws IOException {
         var configStream = CommandFactory.class.getResourceAsStream("CommandFactory.config");
         if (configStream == null){
-            //throw new IOException("Unable to read config!");
             logger.log(Level.WARNING, "Unable to read config!");
+            throw new IOException("Unable to read config!");
         }
         config.load(configStream);
     }
@@ -34,9 +36,8 @@ public class CommandFactory {
 
     public Command getCommand(String commandName) throws Exception{
         if (!config.containsKey(commandName)){
-            //throw new Exception("Command not found!");
             logger.log(Level.WARNING, "Command not found!");
-
+            throw new CommandNotFound("Command not found!");
         }
 
         Command command = null;
@@ -46,7 +47,7 @@ public class CommandFactory {
             command = (Command) commandObject;
         } catch (Exception ex){
             logger.log(Level.WARNING, "Unable to create command!", ex);
-            //throw new Exception("Unable to create command!", ex);
+            throw new UnableToCreateCommand("Command not found!", ex);
         }
         return command;
     }
