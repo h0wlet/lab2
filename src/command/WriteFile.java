@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Exception.*;
+
 public class WriteFile implements Command {
     static Logger logger = Logger.getLogger(Sort.class.getName());
 
@@ -15,8 +17,8 @@ public class WriteFile implements Command {
         logger.info("Execution began!");
 
         if (arguments.size() != 1) {
-            //throw new Exception("Args for write != 1");
             logger.log(Level.WARNING, "Args for write != 1");
+            throw new WrongNumberOfArguments("Args for write != 1");
         }
 
         FileWriter writer = null;
