@@ -1,10 +1,11 @@
-
 import command.Sort;
 
 import java.io.File;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Exception.*;
 
 public class Parser {
     static Logger logger = Logger.getLogger(Sort.class.getName());
@@ -26,8 +27,8 @@ public class Parser {
 
         String line = in.nextLine();
         if (!line.equals("desc")){
-            //throw new IOException("Wrong workflow format!");
             logger.log(Level.WARNING, "Wrong workflow format!");
+            throw new WrongWorkflowFormat("Wrong workflow format!");
         }
 
         while (in.hasNextLine()) {
@@ -50,22 +51,22 @@ public class Parser {
         }
 
         if (checkCSED) {
-            //throw new Exception("Csed was not found!");
             logger.log(Level.WARNING, "Csed was not found!");
+            throw new WrongWorkflowFormat("Csed was not found!");
         }
 
         line = in.nextLine();
         if (line.equals("")) {
-            //throw new Exception("Сommand sequence was not found!");
             logger.log(Level.WARNING, "Сommand sequence was not found!");
+            throw new WrongWorkflowFormat("Сommand sequence was not found!");
         }
         String[] arr = line.split(" ");
 
         int count = 0;
         for (var i : arr) {
             if (count % 2 != 0 && !i.equals("->")) {
-                //throw new Exception("Wrong sequence format!");
                 logger.log(Level.WARNING, "Wrong sequence format!");
+                throw new WrongSequenceFormat("Wrong sequence format!");
             }
             if (count % 2 == 0 && !i.equals("->")) _sequence.add(i);
             count++;
