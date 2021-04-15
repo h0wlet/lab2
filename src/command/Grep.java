@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Exception.*;
+
 public class Grep implements Command {
 
     static Logger logger = Logger.getLogger(Sort.class.getName());
@@ -13,8 +15,8 @@ public class Grep implements Command {
         //grep <word> – выбор из входного текста строк, разделенных символами переноса строки, содержащих заданное слово <word>.
         logger.info("Execution began!");
         if (arguments.size() != 1) {
-            //throw new Exception("Args for grep != 1");
             logger.log(Level.WARNING, "Args for grep != 1");
+            throw new WrongNumberOfArguments("Args for grep != 1");
         }
 
         String word = arguments.get(0);
