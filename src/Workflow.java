@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Exception.*;
+
 public class Workflow {
     static Logger logger = Logger.getLogger(CommandFactory.class.getName());
 
@@ -16,8 +18,8 @@ public class Workflow {
         try {
             parser.parserWorks(fileName);
         } catch (Exception ex) {
-            //throw new Exception("Parser!");
             logger.log(Level.WARNING, "Problem with parser!", ex);
+            throw new Exception("Problem with parser!", ex);
         }
 
         Map<String, Vector<String>> commands = parser.getCommands();
@@ -35,19 +37,19 @@ public class Workflow {
             Command command = CommandFactory.getInstance().getCommand(commandName);
 
             if (i == 0 && command.getType() != CommandType.IN) {
-                //throw new Exception("Read!");
                 logger.log(Level.WARNING, "Wrong sequence format!");
+                throw new WrongSequenceFormat("Wrong sequence format!");
             }
             if (i == commands.size() - 1 && command.getType() != CommandType.OUT) {
-                //throw new Exception("Write!");
                 logger.log(Level.WARNING, "Wrong sequence format!");
+                throw new WrongSequenceFormat("Wrong sequence format!");
             }
 
             try {
                 command.execute(text, arr);
             } catch (Exception ex) {
-                //throw new Exception("Problem with command creation!");
-                logger.log(Level.WARNING, "Create command!", ex);
+                logger.log(Level.WARNING, "Problem with command execute!", ex);
+                throw new Exception("Problem with command execute!", ex);
             }
         }
     }
