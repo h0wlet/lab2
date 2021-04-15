@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Exception.*;
+
 public class Sort implements Command {
     static Logger logger = Logger.getLogger(Sort.class.getName());
 
@@ -12,8 +14,8 @@ public class Sort implements Command {
         //sort – лексикографическая сортировка входного набора строк.
         logger.info("Execution began!");
         if (arguments.size() != 0) {
-            //throw new Exception("Args for sort != 0");
             logger.log(Level.WARNING, "Args for sort != 0");
+            throw new WrongNumberOfArguments("Args for sort != 0");
         }
 
         text.sort(String::compareTo);
