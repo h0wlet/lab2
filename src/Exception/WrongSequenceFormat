@@ -1,0 +1,21 @@
+package Exception;
+
+public class WrongSequenceFormat extends Exception{
+
+    public WrongSequenceFormat(String msg) {
+        super(msg);
+    }
+
+    public WrongSequenceFormat(String msg, Throwable ex) {
+        super(msg, ex);
+    }
+
+    public WrongSequenceFormat() {
+
+    }
+
+    public WrongSequenceFormat(Throwable ex) {
+        super(ex);
+    }
+
+}
