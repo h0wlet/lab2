@@ -1,0 +1,19 @@
+package Exception;
+
+public class CommandNotFound extends Exception{
+
+    public CommandNotFound(String msg) {
+        super(msg);
+    }
+
+    public CommandNotFound() {}
+
+    public CommandNotFound(String msg, Throwable ex) {
+        super(msg, ex);
+    }
+
+    public CommandNotFound(Throwable ex) {
+        super(ex);
+    }
+
+}
